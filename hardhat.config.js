@@ -10,6 +10,10 @@ module.exports = {
     mumbai: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
+    },
+    mainnet: {
+      url: process.env.STAGING_ALCHEMY_MAINNET_KEY,
+      accounts: [process.env.PRIVATE_KEY],
     }
   },
   gasReporter: {

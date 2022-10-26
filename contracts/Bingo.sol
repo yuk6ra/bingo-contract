@@ -15,18 +15,18 @@ contract Bingo is ERC721Enumerable, Ownable {
     uint256 public maxSupply = 100;
 
     string public nameBingo = "";
-    string public nameNomal = "";
+    string public nameNormal = "";
     string public nameWinner = "";
 
     string public description = "";
 
     string public bingoAnimationURL = "";
     string public bingoImageURI = "";
-    string public nomalURI = "";
+    string public normalURI = "";
     string public winnerURI = "";
 
     string public traitType = "";
-    string public traitValueNomal = "";
+    string public traitValueNormal = "";
     string public traitValueWinner = "";
 
     bool public reveal = false;
@@ -36,18 +36,18 @@ contract Bingo is ERC721Enumerable, Ownable {
     constructor(
         string memory _initBingoAnimationURL,
         string memory _initBingoImageURI,
-        string memory _initNomalURI,
+        string memory _initNormalURI,
         string memory _initWinnerURI,
         string memory _initNameBingo,
-        string memory _initNameNomal,
+        string memory _initNameNormal,
         string memory _initNameWinner
     ) ERC721("NFT Bingo", "BINGO") {
         setBingoAnimationURL(_initBingoAnimationURL);
         setBingoImageURI(_initBingoImageURI);
-        setNomalURI(_initNomalURI);
+        setNormalURI(_initNormalURI);
         setWinnerURI(_initWinnerURI);
         setNameBingo(_initNameBingo);
-        setNameNomal(_initNameNomal);
+        setNameNormal(_initNameNormal);
         setNameWinner(_initNameWinner);
     }
 
@@ -72,8 +72,8 @@ contract Bingo is ERC721Enumerable, Ownable {
         maxSupply = _maxSupply;
     } 
 
-    function setNameNomal(string memory _nameNomal) public onlyOwner {
-        nameNomal = _nameNomal;
+    function setNameNormal(string memory _nameNormal) public onlyOwner {
+        nameNormal = _nameNormal;
     }
 
     function setNameWinner(string memory _nameWinner) public onlyOwner {
@@ -96,8 +96,8 @@ contract Bingo is ERC721Enumerable, Ownable {
         bingoImageURI = _bingoImageURI;
     }
 
-    function setNomalURI(string memory _nomalURI) public onlyOwner {
-        nomalURI = _nomalURI;
+    function setNormalURI(string memory _normalURI) public onlyOwner {
+        normalURI = _normalURI;
     }
 
     function setWinnerURI(string memory _winnerURI) public onlyOwner {
@@ -108,8 +108,8 @@ contract Bingo is ERC721Enumerable, Ownable {
         traitType = _traitType;
     }
 
-    function setTraitValueNomal(string memory _traitValueNomal) public onlyOwner {
-        traitValueNomal = _traitValueNomal;
+    function setTraitValueNormal(string memory _traitValueNormal) public onlyOwner {
+        traitValueNormal = _traitValueNormal;
     }
 
     function setTraitValueWinner(string memory _traitValueWinner) public onlyOwner {
@@ -141,9 +141,9 @@ contract Bingo is ERC721Enumerable, Ownable {
         string memory value;
 
         if (!winnerList[tokenId]) {
-            name = string(abi.encodePacked(nameNomal, " #", tokenId.toString()));
-            image = nomalURI;
-            value = traitValueNomal;
+            name = string(abi.encodePacked(nameNormal, " #", tokenId.toString()));
+            image = normalURI;
+            value = traitValueNormal;
         } else {
             name = string(abi.encodePacked(nameWinner, " #", tokenId.toString()));
             image = winnerURI;
@@ -179,7 +179,8 @@ contract Bingo is ERC721Enumerable, Ownable {
                     '", "description": "', description,
                     '", "image" : "', bingoImageURI,
                     '", "animation_url" : "', bingoAnimationURL, tokenId.toString(), BINGO_EXTENSION,
-                    '"}'
+                    '", "attributes" : [{"trait_type": "Token ID", "value": "', tokenId.toString(),
+                    '"}]}'
                 )))
             )
         );
